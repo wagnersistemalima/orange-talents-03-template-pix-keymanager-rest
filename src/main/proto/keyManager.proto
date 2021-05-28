@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.zup.wagner";
+option java_outer_classname = "KeyManager";
+option objc_class_prefix = "HLW";
+import "google/protobuf/timestamp.proto";     // trabalhar com datas e hora
+
+package br.com.zup.wagner;
+
+// service 1
+service KeyManagerRegistraChavePixService {
+  rpc registra (RegistraChavePixRequest) returns (RegistraChavePixResponse) {} // 1
+
+}
+
+// service 2
+
+service KeyManagerRemoveChavePixService {
+  rpc delete (DeleteChavePixRequest) returns (DeleteChavePixResponse) {} // 2
+}
+
+// service 3
+
+service  KeyManagerCarregaChavePixService {
+  rpc carrega (CarregaChavePixRequest) returns (CarregaChavePixResponse) {}
+}
+
+// service 4
+
+service KeyManagerCarregaTodasChavePixService {
+  rpc listarTodas (ListarTodasPixRequest) returns (ListarTodasPixResponse) {
+
+  }
+}
+
+// estrutura de dados service 1
+enum TipoDeChave {
+  DEFAULT_TIPO_CHAVE = 0;
+  CPF = 1;
+  CELULAR = 2;
+  EMAIL = 3;
+  ALEATORIA = 4;
+
+}
+
+// estrutura de dados service 1
+
+enum  TipoDeConta {
+  DEFAULT_TIPO_DE_CONTA = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
+
+}
+// estrutura de dados de entrada / end point cadastrar / service 1
+message RegistraChavePixRequest {
+  string clientId = 1;
+  TipoDeChave tipoDeChave = 2;
+  string valorChave = 3;
+  TipoDeConta tipoDeConta = 4;
+
+
+}
+// estrutura de dados de saida / end pint cadastrar/ service 1
+message RegistraChavePixResponse {
+  string clientId =1;
+  string pixId = 2;
+}
+
+// estrutura de dados de entrada / end point delete / service 2
+message  DeleteChavePixRequest {
+  string pixId = 1;
+  string identificadorItau = 2;
+
+}
+// estrutura de dados de saida / end point delete / service 2
+message  DeleteChavePixResponse {
+  string pixId = 1;
+  string identificadorItau = 2;
+}
+
+// estrutura de dados do serviço 3 / end point carrega
+
+message CarregaChavePixRequest{
+
+  message  FiltroPorPixId {
+    string clientId = 1;
+    string pixId = 2;
+  }
+  FiltroPorPixId pixId = 1;
+  string chave = 2;
+}
+
+// estrutura de dados do serviço 3 / end point carrega
+
+message CarregaChavePixResponse {
+  string identificadorItau = 1;
+  string tipoDeChave = 2;
+  string chave = 3;
+  string tipoDeConta = 4;
+  string instituicao = 5;
+  string ispb = 6;
+  string agencia = 7;
+  string numeroConta = 8;
+  string titular = 9;
+  string cpf = 10;
+  string idInterno = 11;
+  string criadoEm = 12;
+
+}
+
+// estrutura de dados do service 4 / end point listar todos
+
+message  ListarTodasPixRequest {
+  string ClientId = 1;                       // identificador itau
+}
+
+// estrutura de dados do service 4 / end point listar todos
+
+message ListarTodasPixResponse {
+
+  message ChavePix {
+    string pixId = 1;           // id interno
+    string clientId = 2;       // identificador itau
+    string tipoDeChave = 3;
+    string tipoDaConta = 4;
+    string criadoEm = 5;
+  }
+
+  string clientId = 1;
+  repeated ChavePix chaves = 2;
+
+}
+
