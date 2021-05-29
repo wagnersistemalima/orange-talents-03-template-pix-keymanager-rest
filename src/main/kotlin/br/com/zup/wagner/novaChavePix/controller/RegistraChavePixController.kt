@@ -27,8 +27,6 @@ class RegistraChavePixController(
     fun registra(@QueryValue clienteId: UUID, @Body @Valid request: NovaChavePixRequest): HttpResponse<Any> {
         logger.info("Iniciando api rest.....")
 
-        logger.info("request chegando = $request")
-
         val grpcResponse = grpcClient.registra(request.toModel(clienteId))
 
         return HttpResponse.created(location(clienteId, grpcResponse.pixId))
