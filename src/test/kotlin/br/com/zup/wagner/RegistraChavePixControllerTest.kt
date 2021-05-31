@@ -28,10 +28,14 @@ class RegistraChavePixControllerTest {
     @field:Client("/")
     lateinit var client: HttpClient
 
+    // rodar antes de cada teste
+
     @BeforeEach
     fun setUp() {
         Mockito.reset(grpcClient)
     }
+
+    // 1º cenario de teste
 
     @Test
     @DisplayName("deve cadastrar chave pix , quando a request estiver validada")
