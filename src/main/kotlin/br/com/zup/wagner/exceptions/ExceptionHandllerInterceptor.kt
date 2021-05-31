@@ -10,6 +10,8 @@ import io.micronaut.http.server.exceptions.ExceptionHandler
 import org.slf4j.LoggerFactory
 import javax.inject.Singleton
 
+// clase responsavel por tratar erros vindo do microserviço KeyManager, e responder
+// ao cliente rest da nossa api
 
 @Singleton
 class ExceptionHandllerInterceptor: ExceptionHandler<StatusRuntimeException, HttpResponse<Any>> {
