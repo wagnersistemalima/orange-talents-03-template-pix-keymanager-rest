@@ -1,5 +1,6 @@
 package br.com.zup.wagner.fabricaGrpcClient
 
+import br.com.zup.wagner.KeyManagerCarregaChavePixServiceGrpc
 import br.com.zup.wagner.KeyManagerRegistraChavePixServiceGrpc
 import br.com.zup.wagner.KeyManagerRemoveChavePixServiceGrpc
 import io.grpc.ManagedChannel
@@ -24,6 +25,13 @@ class GrpcClientFactory {
     @Singleton
     fun removeChavesStub(@GrpcChannel("keyManagerRestApi") channel: ManagedChannel) : KeyManagerRemoveChavePixServiceGrpc.KeyManagerRemoveChavePixServiceBlockingStub? {
         return KeyManagerRemoveChavePixServiceGrpc.newBlockingStub(channel)
+    }
+
+    // 3 bean para detalhamento de uma chave pix, consulta
+
+    @Singleton
+    fun consultaChaveStub(@GrpcChannel("keyManagerRestApi") channel: ManagedChannel): KeyManagerCarregaChavePixServiceGrpc.KeyManagerCarregaChavePixServiceBlockingStub? {
+        return KeyManagerCarregaChavePixServiceGrpc.newBlockingStub(channel)
     }
 
 }
