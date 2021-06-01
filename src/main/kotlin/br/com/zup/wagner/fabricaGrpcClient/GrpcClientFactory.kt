@@ -1,6 +1,7 @@
 package br.com.zup.wagner.fabricaGrpcClient
 
 import br.com.zup.wagner.KeyManagerCarregaChavePixServiceGrpc
+import br.com.zup.wagner.KeyManagerCarregaTodasChavePixServiceGrpc
 import br.com.zup.wagner.KeyManagerRegistraChavePixServiceGrpc
 import br.com.zup.wagner.KeyManagerRemoveChavePixServiceGrpc
 import io.grpc.ManagedChannel
@@ -32,6 +33,13 @@ class GrpcClientFactory {
     @Singleton
     fun consultaChaveStub(@GrpcChannel("keyManagerRestApi") channel: ManagedChannel): KeyManagerCarregaChavePixServiceGrpc.KeyManagerCarregaChavePixServiceBlockingStub? {
         return KeyManagerCarregaChavePixServiceGrpc.newBlockingStub(channel)
+    }
+
+    // 4 bean listar todas as chaves pix
+
+    @Singleton
+    fun listarTodas(@GrpcChannel("keyManagerRestApi") channel: ManagedChannel): KeyManagerCarregaTodasChavePixServiceGrpc.KeyManagerCarregaTodasChavePixServiceBlockingStub {
+        return KeyManagerCarregaTodasChavePixServiceGrpc.newBlockingStub(channel)
     }
 
 }
