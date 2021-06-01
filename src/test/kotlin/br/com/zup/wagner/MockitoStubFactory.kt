@@ -27,4 +27,9 @@ class MockitoStubFactory {
 
     @Singleton
     fun consultaMock() = Mockito.mock(KeyManagerCarregaChavePixServiceGrpc.KeyManagerCarregaChavePixServiceBlockingStub::class.java)
+
+    // 4 mock
+
+    @Singleton
+    fun listarTodasMock() = Mockito.mock(KeyManagerCarregaTodasChavePixServiceGrpc.KeyManagerCarregaTodasChavePixServiceBlockingStub::class.java)
 }

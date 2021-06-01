@@ -36,7 +36,6 @@ class ConsultaDetalhesChavePixControllerTest {
     val id = "c56dfef4-7901-44fb-84e2-a2cefb157890"
     val nomeTitular = "Rafael M C Ponte"
     val cpf = "02467781054"     // cpf do Rafael Pontes
-    val email = "rafael@gmail.com"
     val tipoDeChave = "CPF"
     val criadoEm = "2021-05-27T14:42:28.138700"
 
